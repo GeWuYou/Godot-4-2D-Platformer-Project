@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhh02eokirf86"]
+
+[ext_resource type="Texture2D" uid="uid://ctd8q2lonb0wc" path="res://assets/Pixel Adventure/Menu/Levels/01.png" id="1_a2ntv"]
+[ext_resource type="Script" uid="uid://bmcco88hwmuqr" path="res://scripts/UI/Buttons/LevelItemButton.cs" id="2_h3ix0"]
+
+[node name="LevelItemButton" type="TextureButton"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+offset_left = 576.0
+offset_top = 368.0
+offset_right = 608.0
+offset_bottom = 400.0
+texture_normal = ExtResource("1_a2ntv")
+stretch_mode = 4
+script = ExtResource("2_h3ix0")
+
+[connection signal="pressed" from="." to="." method="OnLevelItemPressed"]

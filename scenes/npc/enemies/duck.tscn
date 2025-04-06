@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh10dpcyeqndm"]
+
+[ext_resource type="Texture2D" uid="uid://c2pk2i2wynd6v" path="res://assets/Pixel Adventure/Enemies/Duck/Jump (36x36).png" id="1_c7loo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fp31r"]
+radius = 15.3478
+
+[node name="Duck" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_c7loo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_fp31r")
