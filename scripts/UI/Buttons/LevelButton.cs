@@ -34,6 +34,7 @@ public partial class LevelButton : Button
     /// </summary>
     private void OnPressed()
     {
+        GD.Print("Pressed");
         var buttonScene = (PackedScene)ResourceLoader.Load("res://scenes/ui/buttons/level_item_button.tscn");
         for (var i = 1; i <= _gameManager.LevelCount; i++)
         {
@@ -43,7 +44,6 @@ public partial class LevelButton : Button
             // 将 LevelItemButton 添加到 LevelContainer
             _levelButtons.AddChild(levelButton);
         }
-
         // 失效并隐藏主菜单按钮列表
         _mainMenuButtons.SetActive(false);
         // 激活LevelContainer节点

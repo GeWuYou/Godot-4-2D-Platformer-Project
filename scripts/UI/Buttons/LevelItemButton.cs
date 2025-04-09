@@ -1,10 +1,20 @@
 using Godot;
+using Godot42DPlatformerProject.scripts.manager;
+using Godot42DPlatformerProject.scripts.Manager;
 
 namespace Godot42DPlatformerProject.scripts.UI.Buttons;
 
 public partial class LevelItemButton : TextureButton
 {
+    private GameManager _gameManager;
+    private LevelManager _levelManager;
     public int LevelId { get; set; } // 每个按钮绑定一个关卡ID
+
+    public override void _Ready()
+    {
+        _gameManager = ServiceLocator.Resolve<GameManager>();
+        _levelManager = ServiceLocator.Resolve<LevelManager>();
+    }
 
     public void Init(int levelId)
     {
@@ -21,11 +31,10 @@ public partial class LevelItemButton : TextureButton
                 (Texture2D)ResourceLoader.Load("res://assets/Pixel Adventure/Menu/Levels/" + LevelId + ".png");
         }
     }
+
     private void OnLevelItemPressed()
     {
-        // GetTree().ChangeSceneToFile("res://scenes/level/level" + LevelId + ".tscn");
-        var scene = (PackedScene)ResourceLoader.Load("res://scenes/level/level" + LevelId + ".tscn");
-        var level = scene.Instantiate();
-        AddChild(level); // 不会销毁当前场景，只是新增一个子场景
+        GD.Print("Level " + LevelId + " is selected.");
+        _levelManager.LoadLevel(LevelId);
     }
 }

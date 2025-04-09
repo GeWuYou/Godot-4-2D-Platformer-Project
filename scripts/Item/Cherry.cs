@@ -15,10 +15,12 @@ public partial class Cherry : Area2D
 
     private void _on_body_entered(Node2D body)
     {
-        if (body is IPlayer)
+        if (body is not IPlayer)
         {
-            _gameManager.AddScore();
-            QueueFree();
+            return;
         }
+
+        _gameManager.AddScore();
+        QueueFree();
     }
 }

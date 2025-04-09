@@ -1,15 +1,30 @@
 using Godot;
-using System;
+using Godot42DPlatformerProject.scripts.MainCharacter;
+using Godot42DPlatformerProject.scripts.manager;
+using Godot42DPlatformerProject.scripts.Manager;
+
+namespace Godot42DPlatformerProject.scripts.Item;
 
 public partial class End : Area2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    private GameManager _gameManager;
+    private LevelManager _levelManager;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        _gameManager = ServiceLocator.Resolve<GameManager>();
+        _levelManager = ServiceLocator.Resolve<LevelManager>();
+    }
+
+    private void _on_body_entered(Node body)
+    {
+        if (body is not IPlayer)
+        {
+            return;
+        }
+        // 修改当前游戏管理器的关卡id
+        var gameManagerCurrentLevel = _gameManager.CurrentLevel;
+        // 加载下一关
+        _levelManager.LoadLevel(++gameManagerCurrentLevel);
+    }
 }

@@ -11,7 +11,6 @@ public partial class ScorePanel : Panel
     public override void _Ready()
     {
         _scoreLabel = GetNode<Label>("ScoreLabel");
-
         _gameManager = ServiceLocator.Resolve<GameManager>();
         _gameManager.ScoreChanged += OnScoreChanged;
         // 初始值也显示一次

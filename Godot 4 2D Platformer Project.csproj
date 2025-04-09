@@ -4,4 +4,10 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Godot42DPlatformerProject</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="scripts\Loader\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="scripts\Loader\**" />
+  </ItemGroup>
 </Project>
