@@ -37,7 +37,7 @@ public partial class PlayerManager : Node, IRegisterAbleManager
     /// <summary>
     /// 激活角色，并将其移动到指定出生点
     /// </summary>
-    public void ActivateCharacter(Node2D character, Vector2 spawnPosition)
+    public static void ActivateCharacter(Node2D character, Vector2 spawnPosition)
     {
         if (character == null)
         {
@@ -54,6 +54,19 @@ public partial class PlayerManager : Node, IRegisterAbleManager
         AttachCamera(character);
         GD.Print($"[PlayerManager] 激活角色: {character.Name} @ {spawnPosition}");
     }
+
+    /// <summary>
+    /// 禁用指定的角色节点，并将其全局位置设为零向量，同时释放与其关联的相机节点。
+    /// </summary>
+    /// <param name="character">要禁用的角色节点。</param>
+    public static void DeactivateCharacter(Node2D character)
+    {
+        character.SetActive(false);
+        character.GlobalPosition = Vector2.Zero;
+        character.GetNode<Camera2D>("PlayerCamera")?.QueueFree();
+        GD.Print($"[PlayerManager] 禁用角色: {character.Name}");
+    }
+
 
     /// <summary>
     /// 将角色的相机挂载到角色身上

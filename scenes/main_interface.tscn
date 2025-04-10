@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://4ia1knkq21ia"]
+[gd_scene load_steps=6 format=3 uid="uid://d2lcfwnn5c5ha"]
 
-[ext_resource type="Texture2D" uid="uid://es3lllkb51pd" path="res://assets/Pixel Adventure/Background/Yellow.png" id="1_bqqt6"]
-[ext_resource type="Texture2D" uid="uid://b66sxdede2tuo" path="res://assets/Pixel Adventure/main_menu_text.png" id="1_l6cm7"]
-[ext_resource type="Script" uid="uid://boo02rqivtctl" path="res://scripts/UI/Buttons/LevelButton.cs" id="3_8ln24"]
-[ext_resource type="Texture2D" uid="uid://nbjkwy78ve4w" path="res://assets/Pixel Adventure/Menu/Buttons/Back.png" id="4_wu84c"]
+[ext_resource type="Texture2D" uid="uid://es3lllkb51pd" path="res://assets/Pixel Adventure/Background/Yellow.png" id="1_rgrph"]
+[ext_resource type="Texture2D" uid="uid://b66sxdede2tuo" path="res://assets/Pixel Adventure/main_menu_text.png" id="2_grylp"]
+[ext_resource type="Script" uid="uid://boo02rqivtctl" path="res://scripts/UI/Buttons/LevelButton.cs" id="3_jarby"]
+[ext_resource type="Texture2D" uid="uid://nbjkwy78ve4w" path="res://assets/Pixel Adventure/Menu/Buttons/Back.png" id="4_vejak"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wu84c"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_usys5"]
 
-[node name="MainMenu" type="Node"]
+[node name="MainInterface" type="Node"]
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -16,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_bqqt6")
+texture = ExtResource("1_rgrph")
 stretch_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -31,9 +31,9 @@ offset_right = 330.0
 offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_l6cm7")
+texture = ExtResource("2_grylp")
 
-[node name="MainMenuButtons" type="VBoxContainer" parent="."]
+[node name="MainMenuButtonContainer" type="VBoxContainer" parent="."]
 editor_description = "主菜单按钮"
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,26 +48,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="StartButton" type="Button" parent="MainMenuButtons"]
+[node name="StartButton" type="Button" parent="MainMenuButtonContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Start"
 
-[node name="ContinueButton" type="Button" parent="MainMenuButtons"]
+[node name="ContinueButton" type="Button" parent="MainMenuButtonContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Continue"
 
-[node name="LevelButton" type="Button" parent="MainMenuButtons"]
+[node name="LevelButton" type="Button" parent="MainMenuButtonContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Level"
-script = ExtResource("3_8ln24")
+script = ExtResource("3_jarby")
 
-[node name="ExitButton" type="Button" parent="MainMenuButtons"]
+[node name="ExitButton" type="Button" parent="MainMenuButtonContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -86,7 +86,7 @@ offset_right = 288.0
 offset_bottom = 282.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_usys5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelContainer"]
 layout_mode = 2
@@ -112,7 +112,7 @@ size_flags_vertical = 8
 texture_filter = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("4_wu84c")
+texture_normal = ExtResource("4_vejak")
 stretch_mode = 4
 
-[connection signal="pressed" from="MainMenuButtons/LevelButton" to="MainMenuButtons/LevelButton" method="OnPressed"]
+[connection signal="pressed" from="MainMenuButtonContainer/LevelButton" to="MainMenuButtonContainer/LevelButton" method="OnPressed"]
