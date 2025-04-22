@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dagtu10e0nqls"]
+
+[ext_resource type="Script" uid="uid://cxoumsjwsyw5k" path="res://scripts/Util/TileExtractor.cs" id="1_cjnoa"]
+[ext_resource type="Texture2D" uid="uid://deqwah8rhf8xj" path="res://assets/Pixel icons and Game controller 2/iconsx3.png" id="2_1d0jm"]
+
+[node name="Util" type="Node"]
+editor_description = "工具场景，用于加载非游戏运行时工具脚本的根场景"
+
+[node name="TileExtractor" type="Node2D" parent="."]
+script = ExtResource("1_cjnoa")
+TileTexture = ExtResource("2_1d0jm")
+TileRows = 6
+TileCols = 6
+OutputDir = "res://assets/Pixel icons and Game controller 2/Tiles/"

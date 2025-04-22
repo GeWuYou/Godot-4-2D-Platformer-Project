@@ -13,5 +13,3 @@ offset_bottom = 400.0
 texture_normal = ExtResource("1_a2ntv")
 stretch_mode = 4
 script = ExtResource("2_h3ix0")
-
-[connection signal="pressed" from="." to="." method="OnLevelItemPressed"]

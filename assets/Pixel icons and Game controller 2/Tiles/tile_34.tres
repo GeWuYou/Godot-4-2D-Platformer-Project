@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/Pixel icons and Game controller 2/iconsx3.png" id="1_7cruy"]
+
+[resource]
+atlas = ExtResource("1_7cruy")
+region = Rect2(200, 250, 50, 50)

@@ -17,12 +17,12 @@ public partial class UiManager : Node, IRegisterAbleManager
     /// <summary>
     /// UI 根节点
     /// </summary>
-    private Node _uiRoot;
+    private CanvasLayer _uiRoot;
 
     public void Initialize()
     {
         _currentSceneRoot = GetTree().CurrentScene;
-        _uiRoot = _currentSceneRoot.GetNodeOrNull<Node>("UIRoot");
+        _uiRoot = _currentSceneRoot.GetNodeOrNull<CanvasLayer>("UIRoot");
         // 将主页面压入栈
         PushUi(UiConfig.MainInterfaceScenePath);
     }

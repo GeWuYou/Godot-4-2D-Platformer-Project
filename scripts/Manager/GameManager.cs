@@ -13,7 +13,7 @@ public partial class GameManager : Node,IRegisterAbleManager
     
     [Export] [ExportCategory("分数")] private int _score;
     [Export] [ExportCategory("关卡数量")] private int _levelCount = 2;
-    [Export] [ExportCategory("当前关卡级别")]private int _currentLevel = 1;
+    [Export] [ExportCategory("当前关卡级别")]private int _currentLevel;
     /// <summary>
     /// 获取当前分数。
     /// </summary>

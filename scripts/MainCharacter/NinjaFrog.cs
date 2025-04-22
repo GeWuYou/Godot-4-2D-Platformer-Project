@@ -1,4 +1,6 @@
 using Godot;
+using Godot42DPlatformerProject.scripts.Body;
+using Godot42DPlatformerProject.scripts.Component;
 
 namespace Godot42DPlatformerProject.scripts.MainCharacter;
 
@@ -8,11 +10,37 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
     [Export] [ExportCategory("跳跃速度")] private float _jumpVelocity = -900.0f;
     [Export] [ExportCategory("速度变化率")] private float _friction = 800.0f;
     private AnimatedSprite2D _animatedSprite2D;
+    private JumpComponent _jumpComponent;
+    private HitComponent _hitComponent;
+    private Area2D _enemyDetector;
+    private bool _isInvincible;
+
+    public new Vector2 Velocity
+    {
+        get => base.Velocity;
+        set => base.Velocity = value;
+    }
+
+    public new Vector2 GlobalPosition
+    {
+        get => base.GlobalPosition;
+        set => base.GlobalPosition = value;
+    }
 
     public override void _Ready()
     {
         _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _enemyDetector = GetNode<Area2D>("EnemyDetector");
+        _enemyDetector.BodyEntered += OnStompEnemy;
+        _jumpComponent = new JumpComponent(this, _jumpVelocity);
+        _hitComponent = new HitComponent(this);
     }
+    
+    private void Jump()
+    {
+        _jumpComponent.CanJump = true;
+    }
+
 
     public override void _PhysicsProcess(double delta)
     {
@@ -38,7 +66,7 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
         // 跳跃输入
         if (Input.IsActionJustPressed("jump") && IsOnFloor())
         {
-            velocity.Y = _jumpVelocity;
+            Jump();
         }
 
         // 获取输入方向
@@ -61,7 +89,8 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
             velocity.X = Mathf.MoveToward(Velocity.X, 0, _friction * (float)delta);
         }
 
-        // 移动角色
+        // 尝试跳跃
+        _jumpComponent.TryJump(ref velocity);
         Velocity = velocity;
         MoveAndSlide();
 
@@ -80,5 +109,38 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
         {
             _animatedSprite2D.Play(animationToPlay);
         }
+    }
+
+    private void OnStompEnemy(Node body)
+    {
+        if (body==this||body is not IHittableBody hittable)
+        {
+            return;
+        }
+        GD.Print("踩中敌人！");
+        hittable.ApplyDamage(1); // 或调用更通用：ReceiveHit(...)
+        Jump();
+    }
+    
+
+
+    public void PlayHitAnimation()
+    {
+        _animatedSprite2D.Play("Hit");
+    }
+
+    public void ApplyDamage(int amount)
+    {
+    }
+
+    public void StartInvincibility(float duration)
+    {
+    }
+
+    public void OnHitByEnemy(Vector2 fromDir)
+    {
+        if (_isInvincible) return;
+        var knockback = new Vector2(fromDir.X * 300, -200);
+        _hitComponent.ReceiveHit(knockback, 1);
     }
 }

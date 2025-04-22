@@ -25,6 +25,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="Godot 4 2D Platformer Project"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [input]
 
 left={
@@ -64,7 +68,3 @@ down={
 [physics]
 
 2d/default_gravity=2500.0
-
-[rendering]
-
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)

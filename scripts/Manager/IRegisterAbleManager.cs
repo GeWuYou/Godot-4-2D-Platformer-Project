@@ -5,6 +5,7 @@
 /// </summary>
 public interface IRegisterAbleManager
 {
+    int InitOrder => 0; // 默认优先级为 0
     /// <summary>
     /// 初始化管理器的方法
     /// </summary>

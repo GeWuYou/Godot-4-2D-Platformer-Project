@@ -1,5 +1,4 @@
 using Godot;
-using Godot42DPlatformerProject.scripts.manager;
 
 namespace Godot42DPlatformerProject.scripts.Manager;
 

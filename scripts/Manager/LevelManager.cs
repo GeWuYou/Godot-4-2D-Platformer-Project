@@ -12,7 +12,7 @@ public partial class LevelManager : Node, IRegisterAbleManager
     private GameManager _gameManager;
     private SceneManager _sceneManager;
     private UiManager _uiManager;
-
+    private bool _isLoadingLevel;
 
     public void Initialize()
     {
@@ -29,6 +29,14 @@ public partial class LevelManager : Node, IRegisterAbleManager
     /// </summary>
     public void LoadLevel(int levelId)
     {
+        GD.Print(System.Environment.StackTrace);
+        if (_isLoadingLevel)
+        {
+            GD.Print($"[LevelManager] 忽略重复 LoadLevel({levelId}) 请求");
+            return;
+        }
+
+        _isLoadingLevel = true;
         CallDeferred(nameof(DeferredLoadLevel), levelId);
     }
 
@@ -39,6 +47,7 @@ public partial class LevelManager : Node, IRegisterAbleManager
         {
             child.QueueFree();
         }
+
         var player = _playerManager.GetCurrentCharacter();
         if (levelId > _gameManager.LevelCount)
         {
@@ -47,6 +56,7 @@ public partial class LevelManager : Node, IRegisterAbleManager
             _uiManager.PushUi(UiConfig.MainInterfaceScenePath);
             return;
         }
+
         var scene = (PackedScene)ResourceLoader.Load($"res://scenes/level/level{levelId}.tscn");
         if (scene is null)
         {
@@ -72,5 +82,6 @@ public partial class LevelManager : Node, IRegisterAbleManager
         LevelRoot.AddChild(newLevelInstance);
         // 弹出主界面
         _uiManager.PopUi(UiConfig.MainInterfaceScenePath);
+        _isLoadingLevel = false;
     }
 }

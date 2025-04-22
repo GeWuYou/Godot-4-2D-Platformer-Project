@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Godot42DPlatformerProject.scripts.Config;
 using Godot42DPlatformerProject.scripts.manager;
 using Godot42DPlatformerProject.scripts.Manager;
 
@@ -8,12 +10,15 @@ public partial class LevelItemButton : TextureButton
 {
     private GameManager _gameManager;
     private LevelManager _levelManager;
+    private TransitionManager _transitionManager;
     public int LevelId { get; set; } // 每个按钮绑定一个关卡ID
 
     public override void _Ready()
     {
         _gameManager = ServiceLocator.Resolve<GameManager>();
         _levelManager = ServiceLocator.Resolve<LevelManager>();
+        _transitionManager = ServiceLocator.Resolve<TransitionManager>();
+        Pressed += OnLevelItemPressed;
     }
 
     public void Init(int levelId)
@@ -23,18 +28,18 @@ public partial class LevelItemButton : TextureButton
         if (LevelId < 10)
         {
             TextureNormal =
-                (Texture2D)ResourceLoader.Load("res://assets/Pixel Adventure/Menu/Levels/0" + LevelId + ".png");
+                (Texture2D)ResourceLoader.Load(UiConfig.LevelButtonTexturesPath + "0" + LevelId + ".png");
         }
         else
         {
             TextureNormal =
-                (Texture2D)ResourceLoader.Load("res://assets/Pixel Adventure/Menu/Levels/" + LevelId + ".png");
+                (Texture2D)ResourceLoader.Load(UiConfig.LevelButtonTexturesPath + LevelId + ".png");
         }
     }
 
     private void OnLevelItemPressed()
     {
         GD.Print("Level " + LevelId + " is selected.");
-        _levelManager.LoadLevel(LevelId);
+        _transitionManager.RunWithFadeIn(delegate { _levelManager.LoadLevel(LevelId); });
     }
 }

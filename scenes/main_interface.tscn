@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://es3lllkb51pd" path="res://assets/Pixel Adventure/Background/Yellow.png" id="1_rgrph"]
 [ext_resource type="Texture2D" uid="uid://b66sxdede2tuo" path="res://assets/Pixel Adventure/main_menu_text.png" id="2_grylp"]
-[ext_resource type="Script" uid="uid://boo02rqivtctl" path="res://scripts/UI/Buttons/LevelButton.cs" id="3_jarby"]
+[ext_resource type="Script" uid="uid://b2wsrepwt8hxx" path="res://scenes/container/MainMenuButtonContainer.cs" id="3_grylp"]
 [ext_resource type="Texture2D" uid="uid://nbjkwy78ve4w" path="res://assets/Pixel Adventure/Menu/Buttons/Back.png" id="4_vejak"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_usys5"]
@@ -47,6 +47,7 @@ offset_bottom = 179.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
+script = ExtResource("3_grylp")
 
 [node name="StartButton" type="Button" parent="MainMenuButtonContainer"]
 texture_filter = 1
@@ -65,7 +66,12 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Level"
-script = ExtResource("3_jarby")
+
+[node name="OptionButton" type="Button" parent="MainMenuButtonContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Option"
 
 [node name="ExitButton" type="Button" parent="MainMenuButtonContainer"]
 texture_filter = 1
@@ -95,7 +101,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 192)
 layout_mode = 2
 
-[node name="LevelButtons" type="GridContainer" parent="LevelContainer/VBoxContainer/ScrollContainer"]
+[node name="LevelItemButtonContainer" type="GridContainer" parent="LevelContainer/VBoxContainer/ScrollContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
@@ -114,5 +120,3 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("4_vejak")
 stretch_mode = 4
-
-[connection signal="pressed" from="MainMenuButtonContainer/LevelButton" to="MainMenuButtonContainer/LevelButton" method="OnPressed"]

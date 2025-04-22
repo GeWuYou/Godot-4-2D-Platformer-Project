@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://xo223stnm3qb"]
+
+[ext_resource type="Texture2D" uid="uid://deqwah8rhf8xj" path="res://assets/Pixel icons and Game controller 2/iconsx3.png" id="1_ivjc3"]
+
+[resource]
+atlas = ExtResource("1_ivjc3")
+region = Rect2(7.95, 250, 49, 50)
+margin = Rect2(1.18, 4.42, 0.19, 0.045)
