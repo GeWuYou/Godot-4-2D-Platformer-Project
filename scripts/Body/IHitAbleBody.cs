@@ -1,17 +1,21 @@
 ﻿using Godot;
+using Godot42DPlatformerProject.scripts.Component;
 
 namespace Godot42DPlatformerProject.scripts.Body;
 
 /// <summary>
 /// 可受击体接口（用于组件通信）
 /// </summary>
-public interface IHittableBody
+public interface IHitAbleBody: IVelocityBody
 {
+    bool IsInvincible{ get; }
     /// <summary>
-    /// 速率
+    /// Global Position
     /// </summary>
-    Vector2 Velocity { get; set; }
-
+    Vector2 GlobalPosition { get; set; }
+    
+    HitComponent HitComponent { get;}
+    
     /// <summary>
     /// 播放受击动画
     /// </summary>

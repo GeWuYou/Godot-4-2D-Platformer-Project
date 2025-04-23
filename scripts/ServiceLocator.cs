@@ -18,7 +18,20 @@ public static class ServiceLocator
             GD.PrintErr($"[ServiceLocator] 类型 {type.Name} 已注册！");
         }
     }
-    
+
+    public static void Register<T>(T instance)
+    {
+        var type = typeof(T);
+        GD.Print($"[ServiceLocator] 注册: {type.Name}");
+        if (!Services.ContainsKey(type))
+        {
+            Register(type, instance);
+        }
+        else
+        {
+            GD.PrintErr($"[ServiceLocator] {type.Name} 已注册");
+        }
+    }
 
     public static T Resolve<T>() where T : class
     {

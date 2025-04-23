@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dpoikdx1mixb5"]
+[gd_scene load_steps=52 format=3 uid="uid://dpoikdx1mixb5"]
 
 [ext_resource type="Script" uid="uid://8okaaow6k5wq" path="res://scripts/MainCharacter/NinjaFrog.cs" id="1_dddau"]
 [ext_resource type="Texture2D" uid="uid://di0m8wpr87rfw" path="res://assets/Pixel Adventure/Main Characters/Ninja Frog/Jump (32x32).png" id="1_x6kn2"]
@@ -341,11 +341,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m8gif"]
-radius = 15.0
-height = 36.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_anyen"]
-size = Vector2(25, 0.75)
+radius = 16.0
+height = 38.0
 
 [node name="NinjaFrog" type="CharacterBody2D"]
 collision_mask = 3
@@ -359,12 +356,5 @@ sprite_frames = SubResource("SpriteFrames_n8msu")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 14)
+position = Vector2(10, 16)
 shape = SubResource("CapsuleShape2D_m8gif")
-
-[node name="EnemyDetector" type="Area2D" parent="."]
-position = Vector2(0, 3)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2(10, 30.375)
-shape = SubResource("RectangleShape2D_anyen")

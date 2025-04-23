@@ -1,20 +1,13 @@
 ﻿using Godot;
 using Godot42DPlatformerProject.scripts.Body;
+using Godot42DPlatformerProject.scripts.Component;
 
 namespace Godot42DPlatformerProject.scripts.MainCharacter;
 
 /// <summary>
 /// Interface for MainCharacter
 /// </summary>
-public interface IPlayer: IHittableBody
+public interface IPlayer: IHitAbleBody
 {
-    /// <summary>
-    /// Global Position
-    /// </summary>
-    Vector2 GlobalPosition { get; set; }
-    /// <summary>
-    /// Called when the player is hit by an enemy
-    /// </summary>
-    /// <param name="fromDir"> The direction the enemy was coming from </param>
-    public void OnHitByEnemy(Vector2 fromDir);
+    JumpComponent JumpComponent { get;}
 }

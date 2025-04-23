@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://docah2fin6ojm"]
+[gd_scene load_steps=14 format=3 uid="uid://docah2fin6ojm"]
 
 [ext_resource type="Script" uid="uid://cravilw5cunxc" path="res://scripts/Manager/GameManager.cs" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://bojtksrnue6oo" path="res://scripts/Manager/ManagerLoader.cs" id="1_jyhfs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dpoikdx1mixb5" path="res://scenes/mc/ninja_frog.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://csrtpce22a1d0" path="res://scripts/Manager/UiManager.cs" id="6_tipki"]
 [ext_resource type="Script" uid="uid://d2qqsvgufib3m" path="res://scripts/Manager/TransitionManager.cs" id="7_tipki"]
+[ext_resource type="Script" uid="uid://bx4b02yy5ar1u" path="res://scripts/Manager/ComponentManager.cs" id="8_85g3d"]
 
 [sub_resource type="Animation" id="Animation_tipki"]
 length = 0.001
@@ -78,7 +79,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Manager/TransitionManager"]
 libraries = {
@@ -101,6 +101,9 @@ script = ExtResource("5_o6xl0")
 
 [node name="UIManager" type="Node" parent="Manager"]
 script = ExtResource("6_tipki")
+
+[node name="ComponentManager" type="Node" parent="Manager"]
+script = ExtResource("8_85g3d")
 
 [node name="UIRoot" type="CanvasLayer" parent="."]
 

@@ -91,8 +91,7 @@ public partial class PlayerManager : Node, IRegisterAbleManager
     {
         // 禁用
         player.SetActive(false);
-
-        // 不受重力
+        
         if (player is not CharacterBody2D body)
         {
             return;

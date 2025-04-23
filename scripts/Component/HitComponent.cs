@@ -4,10 +4,12 @@ using Godot42DPlatformerProject.scripts.Body;
 
 namespace Godot42DPlatformerProject.scripts.Component;
 
-public class HitComponent(IHittableBody body)
+public class HitComponent(IHitAbleBody body)
 {
-    public void ReceiveHit(Vector2 knockbackForce, int damage, float invincibilityTime = 0.5f)
+    
+    public void ReceiveHit(Vector2 knockbackForce, int damage=1, float invincibilityTime = 0.5f)
     {
+        if (body.IsInvincible) return;
         // 设置击退
         body.Velocity = knockbackForce;
 
@@ -17,7 +19,7 @@ public class HitComponent(IHittableBody body)
         // 扣血等逻辑
         body.ApplyDamage(damage);
 
-        // 设置无敌帧（可选）
+        // 设置无敌帧
         body.StartInvincibility(invincibilityTime);
     }
 }

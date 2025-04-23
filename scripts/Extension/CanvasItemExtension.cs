@@ -17,10 +17,12 @@ public static class CanvasItemExtension
     {
         // 设置不可见
         item.Visible = active;
-        // 不处理输入
+        // 不处理逻辑更新
         item.SetProcess(active);
         // 不处理物理
         item.SetPhysicsProcess(active);
+        // 不处理输入
+        item.SetProcessInput(active);
     }
 
     /// <summary>
@@ -30,6 +32,6 @@ public static class CanvasItemExtension
     /// <returns></returns>
     public static bool IsActive(this CanvasItem item)
     {
-        return item.Visible&&item.IsPhysicsProcessing()&&item.IsProcessing();
+        return item.Visible&&item.IsPhysicsProcessing()&&item.IsProcessing()&&item.IsProcessingInput();
     }
 }
