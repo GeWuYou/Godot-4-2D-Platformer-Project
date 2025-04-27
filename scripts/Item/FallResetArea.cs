@@ -32,6 +32,6 @@ public partial class FallResetArea : Area2D
         }
 
         GD.Print("[FallResetArea] 玩家掉落，准备重置关卡");
-        _levelManager.LoadLevel(_gameManager.CurrentLevel);
+        _levelManager.ReLoadLevel();
     }
 }

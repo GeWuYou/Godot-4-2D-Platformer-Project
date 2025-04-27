@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdfgj7ay42clv"]
+
+[ext_resource type="Script" uid="uid://dcr6pd74yrxej" path="res://scripts/UI/PauseMenu.cs" id="1_2f5f3"]
+[ext_resource type="Texture2D" uid="uid://tx6gdj8y3t0m" path="res://assets/Pixel Adventure/Menu/Buttons/Restart.png" id="1_dd7lr"]
+[ext_resource type="Texture2D" uid="uid://bomcmux0f0gx" path="res://assets/Pixel Adventure/Menu/Buttons/Achievements.png" id="1_hf471"]
+[ext_resource type="Texture2D" uid="uid://dcu154kq2e3kt" path="res://assets/Pixel Adventure/Menu/Buttons/Settings.png" id="2_n4ldv"]
+[ext_resource type="Texture2D" uid="uid://x6yg6vm0e568" path="res://assets/Pixel Adventure/Menu/Buttons/Previous.png" id="4_2f5f3"]
+[ext_resource type="Texture2D" uid="uid://2pqabklcokbn" path="res://assets/Pixel Adventure/Menu/Buttons/Close.png" id="5_a3xc8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd7lr"]
+bg_color = Color(0.613468, 0.454115, 0.29897, 0.486275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4ldv"]
+bg_color = Color(0.457846, 0.381372, 0.24878, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.885052, 0.788445, 0.60161, 1)
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("_resumeButton", "_restartButton", "_optionsButton", "_mainMenuButton", "_exitGameButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2f5f3")
+_resumeButton = NodePath("PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resume")
+_restartButton = NodePath("PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Restart")
+_optionsButton = NodePath("PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Options")
+_mainMenuButton = NodePath("PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenu")
+_exitGameButton = NodePath("PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitGame")
+
+[node name="PausePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dd7lr")
+
+[node name="MarginContainer" type="MarginContainer" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -146.1
+offset_right = 160.0
+offset_bottom = 153.9
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="PausePanel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n4ldv")
+
+[node name="MarginContainer" type="MarginContainer" parent="PausePanel/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+icon = ExtResource("1_hf471")
+
+[node name="Restart" type="Button" parent="PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+icon = ExtResource("1_dd7lr")
+
+[node name="Options" type="Button" parent="PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+icon = ExtResource("2_n4ldv")
+
+[node name="MainMenu" type="Button" parent="PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+icon = ExtResource("4_2f5f3")
+
+[node name="ExitGame" type="Button" parent="PausePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+icon = ExtResource("5_a3xc8")
+expand_icon = true

@@ -25,6 +25,15 @@ public partial class LevelManager : Node, IRegisterAbleManager
     }
 
     /// <summary>
+    /// 重新加载当前关卡。
+    /// </summary>
+    public void ReLoadLevel()
+    {
+        // 调用LoadLevel方法重新加载当前关卡。
+        LoadLevel(_gameManager.CurrentLevel);
+    }
+
+    /// <summary>
     /// 加载指定的关卡，并作为子场景加载到当前场景中
     /// </summary>
     public void LoadLevel(int levelId)
@@ -35,25 +44,22 @@ public partial class LevelManager : Node, IRegisterAbleManager
             GD.Print($"[LevelManager] 忽略重复 LoadLevel({levelId}) 请求");
             return;
         }
-
+        _gameManager.ChangeState(GameState.Playing);
         _isLoadingLevel = true;
         CallDeferred(nameof(DeferredLoadLevel), levelId);
     }
 
     public void DeferredLoadLevel(int levelId)
     {
-        // 卸载旧关卡
-        foreach (var child in LevelRoot.GetChildren())
-        {
-            child.QueueFree();
-        }
-
+        // 清理旧关卡
+        CleanUpOldLevel();
         var player = _playerManager.GetCurrentCharacter();
         if (levelId > _gameManager.LevelCount)
         {
-            PlayerManager.DeactivateCharacter(player);
+            // 切换状态
+            _gameManager.ChangeState(GameState.MainMenu);
             // 回到主界面
-            _uiManager.PushUi(UiConfig.MainInterfaceScenePath);
+            _uiManager.GoToMainMenu();
             return;
         }
 
@@ -83,5 +89,14 @@ public partial class LevelManager : Node, IRegisterAbleManager
         // 弹出主界面
         _uiManager.PopUi(UiConfig.MainInterfaceScenePath);
         _isLoadingLevel = false;
+    }
+
+    public void CleanUpOldLevel()
+    {
+        // 卸载旧关卡
+        foreach (var child in LevelRoot.GetChildren())
+        {
+            child.QueueFree();
+        }
     }
 }

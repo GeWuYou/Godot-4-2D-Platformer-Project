@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://docah2fin6ojm"]
+[gd_scene load_steps=16 format=3 uid="uid://docah2fin6ojm"]
 
 [ext_resource type="Script" uid="uid://cravilw5cunxc" path="res://scripts/Manager/GameManager.cs" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://bojtksrnue6oo" path="res://scripts/Manager/ManagerLoader.cs" id="1_jyhfs"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://csrtpce22a1d0" path="res://scripts/Manager/UiManager.cs" id="6_tipki"]
 [ext_resource type="Script" uid="uid://d2qqsvgufib3m" path="res://scripts/Manager/TransitionManager.cs" id="7_tipki"]
 [ext_resource type="Script" uid="uid://bx4b02yy5ar1u" path="res://scripts/Manager/ComponentManager.cs" id="8_85g3d"]
+[ext_resource type="Script" uid="uid://bdsq8mdqg5p8t" path="res://scripts/Manager/InputManager.cs" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://cdfgj7ay42clv" path="res://scenes/ui/menus/pause_menu.tscn" id="10_ya4ey"]
 
 [sub_resource type="Animation" id="Animation_tipki"]
 length = 0.001
@@ -99,13 +101,19 @@ script = ExtResource("4_tefeu")
 [node name="PlayerManager" type="Node" parent="Manager"]
 script = ExtResource("5_o6xl0")
 
-[node name="UIManager" type="Node" parent="Manager"]
+[node name="UIManager" type="Node" parent="Manager" node_paths=PackedStringArray("_pauseMenu")]
 script = ExtResource("6_tipki")
+_pauseMenu = NodePath("../../UIRoot/PauseMenu")
 
 [node name="ComponentManager" type="Node" parent="Manager"]
 script = ExtResource("8_85g3d")
 
+[node name="InputManager" type="Node" parent="Manager"]
+script = ExtResource("9_choun")
+
 [node name="UIRoot" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="UIRoot" instance=ExtResource("10_ya4ey")]
 
 [node name="LevelRoot" type="Node" parent="."]
 

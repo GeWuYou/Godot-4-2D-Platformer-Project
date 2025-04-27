@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://es3lllkb51pd" path="res://assets/Pixel Adventure/Background/Yellow.png" id="1_rgrph"]
 [ext_resource type="Texture2D" uid="uid://b66sxdede2tuo" path="res://assets/Pixel Adventure/main_menu_text.png" id="2_grylp"]
-[ext_resource type="Script" uid="uid://b2wsrepwt8hxx" path="res://scenes/container/MainMenuButtonContainer.cs" id="3_grylp"]
+[ext_resource type="Script" uid="uid://b2wsrepwt8hxx" path="res://scripts/UI/MainMenuButtonContainer.cs" id="3_grylp"]
 [ext_resource type="Texture2D" uid="uid://nbjkwy78ve4w" path="res://assets/Pixel Adventure/Menu/Buttons/Back.png" id="4_vejak"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_usys5"]

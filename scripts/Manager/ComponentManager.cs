@@ -15,7 +15,7 @@ public partial class ComponentManager : Node, IRegisterAbleManager
         List<object> components =
         [
             new PhysicsComponent(),
-            new TouchResponderRegistry()
+            new TouchResponderRegistry(),
         ];
         foreach (var component in components)
         {

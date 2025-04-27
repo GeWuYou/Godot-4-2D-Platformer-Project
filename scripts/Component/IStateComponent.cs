@@ -10,7 +10,8 @@ public interface IStateComponent<T>
     /// 切换状态
     /// </summary>
     /// <param name="newState"></param>
-    void ChangeState(T newState); 
+    void ChangeState(T newState);
+
     /// <summary>
     /// 是否处于指定状态
     /// </summary>
