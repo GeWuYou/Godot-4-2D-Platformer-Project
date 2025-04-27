@@ -23,9 +23,9 @@ public partial class GameManager : Node, IRegisterAbleManager, IStateComponent<G
     public delegate void ScoreChangedEventHandler(int newScore);
 
     public GameState CurrentState { get; private set; } = GameState.MainMenu;
-
+    public GameState PreviousState { get; private set; }
     private SceneTree _sceneTree;
-    
+
     private UiManager _uiManager;
 
     [Export] [ExportCategory("分数")] private int _score;
@@ -57,6 +57,7 @@ public partial class GameManager : Node, IRegisterAbleManager, IStateComponent<G
     {
         _sceneTree.Quit();
     }
+
     /// <summary>
     /// 设置当前关卡。
     /// </summary>
@@ -77,6 +78,7 @@ public partial class GameManager : Node, IRegisterAbleManager, IStateComponent<G
     {
         if (CurrentState == newState) return;
         GD.Print($"[GameState] Changing from {CurrentState} to {newState}");
+        PreviousState = CurrentState;
         CurrentState = newState;
         JudgmentStatus();
     }
@@ -85,12 +87,20 @@ public partial class GameManager : Node, IRegisterAbleManager, IStateComponent<G
     {
         switch (CurrentState)
         {
+            // 如果当前状态设置为暂停且上一次状态为游戏进行中，则暂停游戏
             case GameState.Paused:
-                _sceneTree.Paused = true;
-                _uiManager.DisplayPauseMenu();
+                if (PreviousState == GameState.Playing)
+                {
+                    _sceneTree.Paused = true;
+                    _uiManager.DisplayPauseMenu();
+                }
                 break;
-            default:
-                _sceneTree.Paused = false;
+            case GameState.Playing:
+                if (PreviousState == GameState.Paused)
+                {
+                    _sceneTree.Paused = false;
+                    _uiManager.HidePauseMenu();
+                }
                 break;
         }
     }

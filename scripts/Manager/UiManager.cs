@@ -21,7 +21,7 @@ public partial class UiManager : Node, IRegisterAbleManager
     /// UI 根节点
     /// </summary>
     private CanvasLayer _uiRoot;
-    
+
     /// <summary>
     /// 玩家管理器，用于管理玩家相关数据
     /// </summary>
@@ -30,9 +30,7 @@ public partial class UiManager : Node, IRegisterAbleManager
     /// <summary>
     /// 暂停菜单
     /// </summary>
-    [Export]
-    [ExportCategory("暂停菜单")]
-    private Control _pauseMenu;
+    [Export] [ExportCategory("暂停菜单")] private Control _pauseMenu;
 
     /// <summary>
     /// 初始化UI管理器
@@ -215,5 +213,10 @@ public partial class UiManager : Node, IRegisterAbleManager
     public void DisplayPauseMenu()
     {
         _pauseMenu.Visible = true;
+    }
+
+    public void HidePauseMenu()
+    {
+        _pauseMenu.Visible = false;
     }
 }

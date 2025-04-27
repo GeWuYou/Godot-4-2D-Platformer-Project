@@ -11,6 +11,8 @@ public partial class InputManager : Node, IRegisterAbleManager
     public void Initialize()
     {
         _gameManager = ServiceLocator.Resolve<GameManager>();
+        // 确保在游戏暂停时仍然能够处理输入
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public override void _Input(InputEvent @event)
