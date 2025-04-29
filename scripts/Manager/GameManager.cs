@@ -2,6 +2,7 @@ using System;
 using Godot;
 using Godot42DPlatformerProject.scripts.Component;
 using Godot42DPlatformerProject.scripts.Manager;
+using Godot42DPlatformerProject.scripts.UI;
 
 namespace Godot42DPlatformerProject.scripts.manager;
 
@@ -92,14 +93,14 @@ public partial class GameManager : Node, IRegisterAbleManager, IStateComponent<G
                 if (PreviousState == GameState.Playing)
                 {
                     _sceneTree.Paused = true;
-                    _uiManager.DisplayPauseMenu();
+                    _uiManager.PeekUi<PauseMenu>().DisplayPauseMenu();
                 }
                 break;
             case GameState.Playing:
                 if (PreviousState == GameState.Paused)
                 {
                     _sceneTree.Paused = false;
-                    _uiManager.HidePauseMenu();
+                    _uiManager.PeekUi<PauseMenu>().HidePauseMenu();
                 }
                 break;
         }

@@ -109,4 +109,14 @@ public partial class PauseMenu : Control
         // 退出游戏
         _gameManager.Quit();
     }
+    
+    public void DisplayPauseMenu()
+    {
+        Visible = true;
+    }
+
+    public void HidePauseMenu()
+    {
+        Visible = false;
+    }
 }
