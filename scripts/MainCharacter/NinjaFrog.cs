@@ -17,8 +17,17 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
     public HitComponent HitComponent { get; private set; }
     private IStateComponent<PlayerState> _playerStateComponent;
     public JumpComponent JumpComponent { get; private set; }
+    [Export] [ExportCategory("血条")] public TextureProgressBar HealthProgressBar { get; set; }
+    public void Reset()
+    {
+        CurrentHealthValue = MaxHealthValue;
+        HealthProgressBar.Value = 100;
+    }
+
+    public float MaxHealthValue => 10;
+    public float CurrentHealthValue { get; set; }
     public bool IsInvincible { get; private set; }
-    
+
     public new Vector2 Velocity
     {
         get => base.Velocity;
@@ -30,8 +39,10 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
         get => base.GlobalPosition;
         set => base.GlobalPosition = value;
     }
+
     public override void _Ready()
     {
+        CurrentHealthValue = MaxHealthValue;
         _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         JumpComponent = new JumpComponent(this, _jumpVelocity);
         HitComponent = new HitComponent(this);
@@ -43,8 +54,9 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
         // 连接方向修改信号
         _moveComponent.Connect("DirectionChanged",
             new Callable(_animationComponent, nameof(_animationComponent.OnDirectionChanged)));
+        HealthProgressBar.Value = 100;
     }
-
+    
 
     public override void _PhysicsProcess(double delta)
     {
@@ -92,6 +104,8 @@ public partial class NinjaFrog : CharacterBody2D, IPlayer
 
     public void ApplyDamage(int amount)
     {
+        CurrentHealthValue -= amount;
+        HealthProgressBar.Value = (CurrentHealthValue / MaxHealthValue) * 100;
     }
 
     public void StartInvincibility(float duration)

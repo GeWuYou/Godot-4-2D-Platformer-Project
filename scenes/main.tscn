@@ -72,6 +72,7 @@ script = ExtResource("1_jyhfs")
 
 [node name="TransitionManager" type="CanvasLayer" parent="Manager"]
 layer = 100
+visible = false
 script = ExtResource("7_tipki")
 
 [node name="BlackOverlay" type="ColorRect" parent="Manager/TransitionManager"]
@@ -100,9 +101,8 @@ script = ExtResource("4_tefeu")
 [node name="PlayerManager" type="Node" parent="Manager"]
 script = ExtResource("5_o6xl0")
 
-[node name="UIManager" type="Node" parent="Manager" node_paths=PackedStringArray("_pauseMenu")]
+[node name="UIManager" type="Node" parent="Manager"]
 script = ExtResource("6_tipki")
-_pauseMenu = NodePath("")
 
 [node name="ComponentManager" type="Node" parent="Manager"]
 script = ExtResource("8_85g3d")

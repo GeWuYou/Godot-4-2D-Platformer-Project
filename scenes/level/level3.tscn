@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://bl8tujboy6u1p"]
+[gd_scene load_steps=8 format=4 uid="uid://bl8tujboy6u1p"]
 
 [ext_resource type="Script" uid="uid://biabki24y77r2" path="res://scripts/UI/ScorePanel.cs" id="2_abfbc"]
-[ext_resource type="Texture2D" uid="uid://xo223stnm3qb" path="res://assets/Pixel icons and Game controller 2/Tiles/heart.tres" id="2_ojmut"]
 [ext_resource type="Texture2D" uid="uid://cldhjakl1001s" path="res://assets/Pixel Adventure/Background/Brown.png" id="3_gxyiv"]
 [ext_resource type="Texture2D" uid="uid://rubxcxm4cbl3" path="res://assets/Pixel Adventure/Terrain/Terrain (16x16).png" id="4_8nqb7"]
 [ext_resource type="Script" uid="uid://buixxircsgdkh" path="res://scripts/Model/LevelData.cs" id="5_7jkud"]
@@ -339,33 +338,6 @@ theme_override_font_sizes/font_size = 30
 text = "Score：0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Hearts" type="Panel" parent="UI"]
-offset_right = 279.0
-offset_bottom = 59.0
-
-[node name="VBoxContainer" type="HBoxContainer" parent="UI/Hearts"]
-layout_mode = 1
-offset_right = 280.0
-offset_bottom = 59.0
-
-[node name="Heart" type="TextureRect" parent="UI/Hearts/VBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("2_ojmut")
-expand_mode = 2
-
-[node name="Heart2" type="TextureRect" parent="UI/Hearts/VBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("2_ojmut")
-expand_mode = 2
-
-[node name="Heart3" type="TextureRect" parent="UI/Hearts/VBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("2_ojmut")
-expand_mode = 2
 
 [node name="SceneObjects" type="Node" parent="."]
 

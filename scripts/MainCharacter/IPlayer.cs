@@ -10,4 +10,8 @@ namespace Godot42DPlatformerProject.scripts.MainCharacter;
 public interface IPlayer: IHitAbleBody
 {
     JumpComponent JumpComponent { get;}
+    
+    protected TextureProgressBar HealthProgressBar { get; set; }
+
+    public void Reset();
 }

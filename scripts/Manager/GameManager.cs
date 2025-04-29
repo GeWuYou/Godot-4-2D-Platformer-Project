@@ -36,7 +36,11 @@ public partial class GameManager : Node, IRegisterAbleManager, IStateComponent<G
     /// <summary>
     /// 获取当前分数。
     /// </summary>
-    public int Score => _score;
+    public int Score
+    {
+        get => _score;
+        set => _score = value;
+    }
 
     /// <summary>
     /// 获取关卡总数。

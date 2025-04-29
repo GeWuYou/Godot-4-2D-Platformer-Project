@@ -2,6 +2,7 @@ using Godot;
 using Godot42DPlatformerProject.scripts.Config;
 using Godot42DPlatformerProject.scripts.Extension;
 using Godot42DPlatformerProject.scripts.manager;
+using Godot42DPlatformerProject.scripts.Manager;
 using Godot42DPlatformerProject.scripts.UI.Buttons;
 
 namespace Godot42DPlatformerProject.scripts.UI;
@@ -47,12 +48,15 @@ public partial class MainMenuButtonContainer : VBoxContainer
     /// 游戏管理器，负责游戏的核心逻辑
     /// </summary>
     private GameManager _gameManager;
+    
+    private LevelManager _levelManager;
 
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _gameManager = ServiceLocator.Resolve<GameManager>();
+        _levelManager = ServiceLocator.Resolve<LevelManager>();
         _startButton = GetNode<Button>("StartButton");
         _continueButton = GetNode<Button>("ContinueButton");
         _levelButton = GetNode<Button>("LevelButton");
@@ -63,6 +67,13 @@ public partial class MainMenuButtonContainer : VBoxContainer
         // 绑定选关按钮事件
         _levelButton.Pressed += OnLevelButtonPressed;
         _exitButton.Pressed += _gameManager.Quit;
+        _startButton.Pressed += OnStartButtonPressed;
+    }
+
+    private void OnStartButtonPressed()
+    {
+        _gameManager.SetLevel(1);
+        _levelManager.LoadLevel(_gameManager.CurrentLevel);
     }
 
     /// <summary>

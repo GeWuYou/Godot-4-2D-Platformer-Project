@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dpoikdx1mixb5"]
+[gd_scene load_steps=54 format=3 uid="uid://dpoikdx1mixb5"]
 
 [ext_resource type="Script" uid="uid://8okaaow6k5wq" path="res://scripts/MainCharacter/NinjaFrog.cs" id="1_dddau"]
 [ext_resource type="Texture2D" uid="uid://di0m8wpr87rfw" path="res://assets/Pixel Adventure/Main Characters/Ninja Frog/Jump (32x32).png" id="1_x6kn2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b12sed5l2ntv8" path="res://assets/Pixel Adventure/Main Characters/Ninja Frog/Hit (32x32).png" id="4_cw5ri"]
 [ext_resource type="Texture2D" uid="uid://dlig20j12rofm" path="res://assets/Pixel Adventure/Main Characters/Ninja Frog/Run (32x32).png" id="7_i68ss"]
 [ext_resource type="Texture2D" uid="uid://ml0x4q4dvilw" path="res://assets/Pixel Adventure/Main Characters/Ninja Frog/Wall Jump (32x32).png" id="8_y7vge"]
+[ext_resource type="Texture2D" uid="uid://bhmsf4a7tqm8d" path="res://assets/kenney_ui-pack-rpg-expansion/PNG/healthbarUnder.png" id="9_cw5ri"]
+[ext_resource type="Texture2D" uid="uid://c1njtic8lm22v" path="res://assets/kenney_ui-pack-rpg-expansion/PNG/healthbarProgress.png" id="10_i68ss"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8msu"]
 atlas = ExtResource("2_anyen")
@@ -344,9 +346,10 @@ animations = [{
 radius = 16.0
 height = 38.0
 
-[node name="NinjaFrog" type="CharacterBody2D"]
+[node name="NinjaFrog" type="CharacterBody2D" node_paths=PackedStringArray("HealthProgressBar")]
 collision_mask = 3
 script = ExtResource("1_dddau")
+HealthProgressBar = NodePath("HealthProgressBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -358,3 +361,11 @@ animation = &"Idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(10, 16)
 shape = SubResource("CapsuleShape2D_m8gif")
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -23.0
+offset_top = -19.0
+offset_right = 41.0
+offset_bottom = -9.0
+texture_under = ExtResource("9_cw5ri")
+texture_progress = ExtResource("10_i68ss")

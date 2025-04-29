@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Godot;
 using Godot42DPlatformerProject.scripts.Extension;
+using Godot42DPlatformerProject.scripts.MainCharacter;
+using Godot42DPlatformerProject.scripts.manager;
 
 namespace Godot42DPlatformerProject.scripts.Manager;
 
@@ -9,9 +11,10 @@ public partial class PlayerManager : Node, IRegisterAbleManager
     private readonly Dictionary<string, Node2D> _characters = new();
     private Node2D _current;
     public const string CharacterDefault = "NinjaFrog";
-
+    private GameManager _gameManager;
     public void Initialize()
     {
+        _gameManager = ServiceLocator.Resolve<GameManager>();
         var currentScene = GetTree().CurrentScene;
         var playerRoot = currentScene.GetNode<Node>("PlayerRoot");
         // 自动注册所有子角色
@@ -136,4 +139,13 @@ public partial class PlayerManager : Node, IRegisterAbleManager
     }
 
     public Node2D GetCurrentCharacter() => _current;
+
+    public void Reset()
+    {
+        if (_current is IPlayer player)
+        {
+            player.Reset();
+        }
+        _gameManager.Score = 0;
+    }
 }

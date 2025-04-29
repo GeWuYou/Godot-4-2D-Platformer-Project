@@ -49,6 +49,8 @@ public partial class LevelManager : Node, IRegisterAbleManager
     {
         // 调用LoadLevel方法重新加载当前关卡。
         LoadLevel(_gameManager.CurrentLevel);
+        // 重置角色状态
+        _playerManager.Reset();
     }
 
     /// <summary>

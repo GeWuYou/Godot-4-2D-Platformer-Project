@@ -6,16 +6,19 @@ namespace Godot42DPlatformerProject.scripts.Body;
 /// <summary>
 /// 可受击体接口（用于组件通信）
 /// </summary>
-public interface IHitAbleBody: IVelocityBody
+public interface IHitAbleBody : IVelocityBody
 {
-    bool IsInvincible{ get; }
+    float MaxHealthValue { get; }
+    float CurrentHealthValue { get; set; }
+    bool IsInvincible { get; }
+
     /// <summary>
     /// Global Position
     /// </summary>
     Vector2 GlobalPosition { get; set; }
-    
-    HitComponent HitComponent { get;}
-    
+
+    HitComponent HitComponent { get; }
+
     /// <summary>
     /// 播放受击动画
     /// </summary>
@@ -32,5 +35,4 @@ public interface IHitAbleBody: IVelocityBody
     /// </summary>
     /// <param name="duration"> 持续时间 </param>
     void StartInvincibility(float duration);
-    
 }

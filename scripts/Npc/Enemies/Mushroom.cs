@@ -15,6 +15,8 @@ public partial class Mushroom : CharacterBody2D, IHitAbleBody
     private AnimatedSprite2D _animatedSprite2D;
     public HitComponent HitComponent { get; private set; }
     private Area2D _area2D;
+    public float MaxHealthValue => 1;
+    public float CurrentHealthValue { get; set; }
     public bool IsInvincible => false;
     private TouchResponderRegistry _responderRegistry;
     public new Vector2 GlobalPosition
@@ -30,6 +32,7 @@ public partial class Mushroom : CharacterBody2D, IHitAbleBody
 
     public override void _Ready()
     {
+        CurrentHealthValue = MaxHealthValue;
         _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         HitComponent = new HitComponent(this);
         _area2D = GetNode<Area2D>("Area2D");
