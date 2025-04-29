@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2lcfwnn5c5ha"]
+[gd_scene load_steps=7 format=3 uid="uid://d2lcfwnn5c5ha"]
 
 [ext_resource type="Texture2D" uid="uid://es3lllkb51pd" path="res://assets/Pixel Adventure/Background/Yellow.png" id="1_rgrph"]
 [ext_resource type="Texture2D" uid="uid://b66sxdede2tuo" path="res://assets/Pixel Adventure/main_menu_text.png" id="2_grylp"]
 [ext_resource type="Script" uid="uid://b2wsrepwt8hxx" path="res://scripts/UI/MainMenuButtonContainer.cs" id="3_grylp"]
+[ext_resource type="Script" uid="uid://cp8pt6d5828ft" path="res://scripts/UI/LevelContainer.cs" id="4_grylp"]
 [ext_resource type="Texture2D" uid="uid://nbjkwy78ve4w" path="res://assets/Pixel Adventure/Menu/Buttons/Back.png" id="4_vejak"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_usys5"]
@@ -33,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_grylp")
 
-[node name="MainMenuButtonContainer" type="VBoxContainer" parent="."]
+[node name="MainMenuButtonContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("_levelItemButtonContainer")]
 editor_description = "主菜单按钮"
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,6 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 script = ExtResource("3_grylp")
+_levelItemButtonContainer = NodePath("../LevelContainer/VBoxContainer/ScrollContainer/LevelItemButtonContainer")
 
 [node name="StartButton" type="Button" parent="MainMenuButtonContainer"]
 texture_filter = 1
@@ -79,7 +81,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Exit"
 
-[node name="LevelContainer" type="PanelContainer" parent="."]
+[node name="LevelContainer" type="PanelContainer" parent="." node_paths=PackedStringArray("_selectLevelToReturnButton", "_mainMenuButtonContainer")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,6 +95,9 @@ offset_bottom = 282.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_usys5")
+script = ExtResource("4_grylp")
+_selectLevelToReturnButton = NodePath("VBoxContainer/HBoxContainer/BackButton")
+_mainMenuButtonContainer = NodePath("../MainMenuButtonContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelContainer"]
 layout_mode = 2

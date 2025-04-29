@@ -1,12 +1,10 @@
 using Godot;
-using Godot42DPlatformerProject.scripts;
 using Godot42DPlatformerProject.scripts.Config;
 using Godot42DPlatformerProject.scripts.Extension;
 using Godot42DPlatformerProject.scripts.manager;
 using Godot42DPlatformerProject.scripts.UI.Buttons;
 
-namespace Godot42DPlatformerProject.scenes.container;
-
+namespace Godot42DPlatformerProject.scripts.UI;
 public partial class MainMenuButtonContainer : VBoxContainer
 {
     /// <summary>
@@ -42,6 +40,7 @@ public partial class MainMenuButtonContainer : VBoxContainer
     /// <summary>
     /// 包含多个等级按钮的网格容器
     /// </summary>
+    [Export][ExportCategory("关卡按钮容器")]
     private GridContainer _levelItemButtonContainer;
 
     /// <summary>
@@ -61,10 +60,9 @@ public partial class MainMenuButtonContainer : VBoxContainer
         _exitButton = GetNode<Button>("ExitButton");
         var root = GetParent();
         _levelContainer = root.GetNode<PanelContainer>("LevelContainer");
-        _levelItemButtonContainer =
-            _levelContainer.GetNode<GridContainer>("VBoxContainer/ScrollContainer/LevelItemButtonContainer");
         // 绑定选关按钮事件
         _levelButton.Pressed += OnLevelButtonPressed;
+        _exitButton.Pressed += _gameManager.Quit;
     }
 
     /// <summary>
@@ -72,6 +70,24 @@ public partial class MainMenuButtonContainer : VBoxContainer
     /// </summary>
     private void OnLevelButtonPressed()
     {
+        InitLevelItemButtons();
+        // 失效并隐藏主菜单按钮列表
+        this.SetActive(false);
+        // 激活LevelContainer节点
+        _levelContainer.SetActive(true);
+    }
+    
+
+    /// <summary>
+    /// 初始化等级项按钮
+    /// </summary>
+    private void InitLevelItemButtons()
+    {
+        if (_levelItemButtonContainer.GetChildCount() > 0)
+        {
+            return;
+        }
+
         var buttonScene = (PackedScene)ResourceLoader.Load(UiConfig.LevelItemButtonScenePath);
         for (var i = 1; i <= _gameManager.LevelCount; i++)
         {
@@ -81,10 +97,5 @@ public partial class MainMenuButtonContainer : VBoxContainer
             // 将 LevelItemButton 添加到 LevelContainer
             _levelItemButtonContainer.AddChild(levelButton);
         }
-
-        // 失效并隐藏主菜单按钮列表
-        this.SetActive(false);
-        // 激活LevelContainer节点
-        _levelContainer.SetActive(true);
     }
 }
