@@ -86,6 +86,7 @@ public partial class LevelManager : Node, IRegisterAbleManager
             _gameManager.ChangeState(GameState.MainMenu);
             // 回到主界面
             _uiManager.GoToMainMenu();
+            _isLoadingLevel = false;
             return;
         }
 
@@ -108,6 +109,7 @@ public partial class LevelManager : Node, IRegisterAbleManager
             var spawnPoint = data.GetPlayerInitStartPoint();
             PlayerManager.ActivateCharacter(player, spawnPoint);
             GD.Print($"[LevelManager] 玩家出生点：{spawnPoint}");
+            _playerManager.Reset();
         }
 
         // 将新关卡作为子场景添加到关卡根节点
